@@ -1,0 +1,35 @@
+<!--    载入静态文件-->
+{% load static %}
+
+<!DOCTYPE html>
+<!-- 网站主语言 -->
+<html lang="zh-cn">
+<head>
+    <!-- 网站采用的字符编码 -->
+    <meta charset="utf-8">
+    <!-- 预留网站标题的位置 -->
+    <title>{% block title %}{% endblock %}</title>
+    <!-- 引入bootstrap的css文件  -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+
+<body>
+<!-- 引入导航栏 -->
+{% include 'header.html' %}
+<!-- 预留具体页面的位置 -->
+{% block content %}{% endblock content %}
+<!-- 引入注脚 -->
+{% include 'footer.html' %}
+<!-- bootstrap.js 依赖popper.js，因此在这里引入 -->
+<!--
+    popper.js 采用 cdn 远程引入，意思是你不需要把它下载到本地。
+    在实际的开发中推荐静态文件尽量都使用 cdn 的形式。
+    教程采用本地引入是为了让读者了解静态文件本地部署的流程。
+-->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+<!-- 引入bootstrap的js文件 -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

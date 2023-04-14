@@ -1,0 +1,80 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    文章详情
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+    <!-- 文章详情 -->
+    <div class="container">
+        <!--    <div class="row">-->
+        <!-- 标题及作者 -->
+        <h1 class="col-12 mt-4 mb-4">{{ article.title }}</h1>
+        <div class="col-12 alert alert-primary">
+            <div class="col-12">
+                <a>作者：{{ article.author }}</a>
+                &nbsp
+                <a>{{ article.created|date:'Y-m-d H:i:s' }}</a>
+                <!-- 只有作者可以修改文章 -->
+                {% if user == article.author %}
+
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">删除文章</a>
+                    <!-- 新增一个隐藏的表单 -->
+                    <form
+                            style="display:none;"
+                            id="safe_delete"
+                            action="{% url "delete" article.id %}"
+                            method="POST"
+                    >
+                        {% csrf_token %}
+                        <button type="submit">发送</button>
+
+                    </form>
+                    <a href="{% url "update" article.id %}">编辑文章</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {#        <br>#}
+        <!-- 文章正文 -->
+        <div class="col-12">
+            <p>{{ article.body }}</p>
+        </div>
+        <!--    </div>-->
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">确认删除</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    确认删除文章？
+                </div>
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirm_delete()">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 删除文章的函数
+        function confirm_delete() {
+            document.getElementById("safe_delete").submit();
+        }
+    </script>
+    </script>
+
+{% endblock content %}

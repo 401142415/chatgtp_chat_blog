@@ -1,0 +1,850 @@
+celery worker has been started.
+/usr/local/lib/python3.11/dist-packages/celery/platforms.py:840: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@x v5.2.7 (dawn-chorus)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.35 2023-04-01 21:13:08
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         chatgpt:0x7f1e292268d0
+- ** ---------- .> transport:   redis://127.0.0.1:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 4 (eventlet)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . bots.tasks.add
+  . bots.tasks.search
+  . chatgpt.celery.debug_task
+
+[2023-04-01 21:13:08,757: INFO/MainProcess] Connected to redis://127.0.0.1:6379/0
+[2023-04-01 21:13:08,760: INFO/MainProcess] mingle: searching for neighbors
+[2023-04-01 21:13:09,770: INFO/MainProcess] mingle: all alone
+[2023-04-01 21:13:09,776: INFO/MainProcess] pidbox: Connected to redis://127.0.0.1:6379/0.
+[2023-04-01 21:13:09,779: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2023-04-01 21:13:09,779: INFO/MainProcess] celery@x ready.
+[2023-04-01 21:13:29,785: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 332, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.11/dist-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 628, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/loops.py", line 130, in synloop
+    connection.drain_events(timeout=2.0)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 259, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 212, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2023-04-01 21:13:29,796: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:13:29,797: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/hubs/poll.py", line 111, in wait
+    listener.cb(fileno)
+[2023-04-01 21:13:29,797: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/worker/pidbox.py", line 118, in loop
+    connection.drain_events(timeout=1.0)
+
+worker: Warm shutdown (MainProcess)
+celery worker has been started.
+/usr/local/lib/python3.11/dist-packages/celery/platforms.py:840: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@x v5.2.7 (dawn-chorus)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.35 2023-04-01 21:18:28
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         chatgpt:0x7f437e4ae890
+- ** ---------- .> transport:   redis://127.0.0.1:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 4 (eventlet)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . bots.tasks.add
+  . bots.tasks.chat
+  . bots.tasks.search
+  . chatgpt.celery.debug_task
+
+[2023-04-01 21:18:28,954: INFO/MainProcess] Connected to redis://127.0.0.1:6379/0
+[2023-04-01 21:18:28,956: INFO/MainProcess] mingle: searching for neighbors
+[2023-04-01 21:18:29,966: INFO/MainProcess] mingle: all alone
+[2023-04-01 21:18:29,974: INFO/MainProcess] pidbox: Connected to redis://127.0.0.1:6379/0.
+[2023-04-01 21:18:29,978: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2023-04-01 21:18:29,978: INFO/MainProcess] celery@x ready.
+[2023-04-01 21:23:30,971: INFO/MainProcess] Task bots.tasks.chat[a79bc7c0-8a40-44aa-a70f-a98f823c3311] received
+[2023-04-01 21:23:31,051: WARNING/MainProcess] --- Logging error ---
+[2023-04-01 21:23:31,053: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:23:31,053: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,053: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,053: WARNING/MainProcess] TypeError: chat() missing 1 required positional argument: 'name'
+[2023-04-01 21:23:31,053: WARNING/MainProcess] 
+During handling of the above exception, another exception occurred:
+[2023-04-01 21:23:31,053: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 146, in format
+    msg = super().format(record)
+          ^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 695, in format
+    record.exc_text = self.formatException(record.exc_info)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 142, in formatException
+    r = super().formatException(ei)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 645, in formatException
+    traceback.print_exception(ei[0], ei[1], tb, None, sio)
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 124, in print_exception
+    te = TracebackException(type(value), value, tb, limit=limit, compact=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 690, in __init__
+    self.stack = StackSummary._extract_from_extended_frame_gen(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 416, in _extract_from_extended_frame_gen
+    for f, (lineno, end_lineno, colno, end_colno) in frame_gen:
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 353, in _walk_tb_with_full_positions
+    positions = _get_code_position(tb.tb_frame.f_code, tb.tb_lasti)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 366, in _get_code_position
+    positions_gen = code.co_positions()
+                    ^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:31,054: WARNING/MainProcess] AttributeError: '_Code' object has no attribute 'co_positions'
+[2023-04-01 21:23:31,055: WARNING/MainProcess] Call stack:
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/greenthread.py", line 221, in main
+    result = function(*args, **kwargs)
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 32, in apply_target
+    return base.apply_target(target, args, kwargs, callback, accept_callback,
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/base.py", line 29, in apply_target
+    ret = target(*args, **kwargs)
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 166, in killable_target
+    return target(*args, **kwargs)
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 649, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 468, in trace_task
+    I, R, state, retval = on_error(task_request, exc, uuid)
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 379, in on_error
+    R = I.handle_error_state(
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 237, in handle_failure
+    self._log_error(task, req, einfo)
+[2023-04-01 21:23:31,060: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 265, in _log_error
+    logger.log(policy.severity, policy.format.strip(), context,
+[2023-04-01 21:23:31,060: WARNING/MainProcess] Message: 'Task %(name)s[%(id)s] %(description)s: %(exc)s'
+Arguments: {'hostname': 'celery@x', 'id': 'a79bc7c0-8a40-44aa-a70f-a98f823c3311', 'name': 'bots.tasks.chat', 'exc': 'TypeError("chat() missing 1 required positional argument: \'name\'")', 'traceback': 'Traceback (most recent call last):\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task\n    R = retval = fun(*args, **kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__\n    return self.run(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: chat() missing 1 required positional argument: \'name\'\n', 'args': "['specific.45d425d544914a4a87c5bdb9739b19cd!0752d0f02963475ea1cc304c3d3540f0']", 'kwargs': '{}', 'description': 'raised unexpected', 'internal': False}
+[2023-04-01 21:23:41,201: INFO/MainProcess] Task bots.tasks.chat[29a3b130-ac89-4db6-9c5f-de77eed5fb2c] received
+[2023-04-01 21:23:41,213: WARNING/MainProcess] --- Logging error ---
+[2023-04-01 21:23:41,213: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:23:41,213: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess] TypeError: chat() missing 1 required positional argument: 'name'
+[2023-04-01 21:23:41,214: WARNING/MainProcess] 
+During handling of the above exception, another exception occurred:
+[2023-04-01 21:23:41,214: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 146, in format
+    msg = super().format(record)
+          ^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 695, in format
+    record.exc_text = self.formatException(record.exc_info)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 142, in formatException
+    r = super().formatException(ei)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,214: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 645, in formatException
+    traceback.print_exception(ei[0], ei[1], tb, None, sio)
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 124, in print_exception
+    te = TracebackException(type(value), value, tb, limit=limit, compact=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 690, in __init__
+    self.stack = StackSummary._extract_from_extended_frame_gen(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 416, in _extract_from_extended_frame_gen
+    for f, (lineno, end_lineno, colno, end_colno) in frame_gen:
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 353, in _walk_tb_with_full_positions
+    positions = _get_code_position(tb.tb_frame.f_code, tb.tb_lasti)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 366, in _get_code_position
+    positions_gen = code.co_positions()
+                    ^^^^^^^^^^^^^^^^^
+[2023-04-01 21:23:41,215: WARNING/MainProcess] AttributeError: '_Code' object has no attribute 'co_positions'
+[2023-04-01 21:23:41,215: WARNING/MainProcess] Call stack:
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/greenthread.py", line 221, in main
+    result = function(*args, **kwargs)
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 32, in apply_target
+    return base.apply_target(target, args, kwargs, callback, accept_callback,
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/base.py", line 29, in apply_target
+    ret = target(*args, **kwargs)
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 166, in killable_target
+    return target(*args, **kwargs)
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 649, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+[2023-04-01 21:23:41,215: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 468, in trace_task
+    I, R, state, retval = on_error(task_request, exc, uuid)
+[2023-04-01 21:23:41,216: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 379, in on_error
+    R = I.handle_error_state(
+[2023-04-01 21:23:41,216: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+[2023-04-01 21:23:41,216: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 237, in handle_failure
+    self._log_error(task, req, einfo)
+[2023-04-01 21:23:41,216: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 265, in _log_error
+    logger.log(policy.severity, policy.format.strip(), context,
+[2023-04-01 21:23:41,216: WARNING/MainProcess] Message: 'Task %(name)s[%(id)s] %(description)s: %(exc)s'
+Arguments: {'hostname': 'celery@x', 'id': '29a3b130-ac89-4db6-9c5f-de77eed5fb2c', 'name': 'bots.tasks.chat', 'exc': 'TypeError("chat() missing 1 required positional argument: \'name\'")', 'traceback': 'Traceback (most recent call last):\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task\n    R = retval = fun(*args, **kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__\n    return self.run(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: chat() missing 1 required positional argument: \'name\'\n', 'args': "['specific.45d425d544914a4a87c5bdb9739b19cd!0752d0f02963475ea1cc304c3d3540f0']", 'kwargs': '{}', 'description': 'raised unexpected', 'internal': False}
+[2023-04-01 21:25:28,953: INFO/MainProcess] Task bots.tasks.chat[735a3387-b240-42a1-8d03-f5db1783e301] received
+[2023-04-01 21:25:28,965: WARNING/MainProcess] --- Logging error ---
+[2023-04-01 21:25:28,965: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:25:28,966: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,966: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,966: WARNING/MainProcess] TypeError: chat() missing 1 required positional argument: 'name'
+[2023-04-01 21:25:28,966: WARNING/MainProcess] 
+During handling of the above exception, another exception occurred:
+[2023-04-01 21:25:28,966: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:25:28,966: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 1110, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 953, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 146, in format
+    msg = super().format(record)
+          ^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 695, in format
+    record.exc_text = self.formatException(record.exc_info)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/utils/log.py", line 142, in formatException
+    r = super().formatException(ei)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/logging/__init__.py", line 645, in formatException
+    traceback.print_exception(ei[0], ei[1], tb, None, sio)
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 124, in print_exception
+    te = TracebackException(type(value), value, tb, limit=limit, compact=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 690, in __init__
+    self.stack = StackSummary._extract_from_extended_frame_gen(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 416, in _extract_from_extended_frame_gen
+    for f, (lineno, end_lineno, colno, end_colno) in frame_gen:
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 353, in _walk_tb_with_full_positions
+    positions = _get_code_position(tb.tb_frame.f_code, tb.tb_lasti)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess]   File "/usr/lib/python3.11/traceback.py", line 366, in _get_code_position
+    positions_gen = code.co_positions()
+                    ^^^^^^^^^^^^^^^^^
+[2023-04-01 21:25:28,967: WARNING/MainProcess] AttributeError: '_Code' object has no attribute 'co_positions'
+[2023-04-01 21:25:28,967: WARNING/MainProcess] Call stack:
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/greenthread.py", line 221, in main
+    result = function(*args, **kwargs)
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 32, in apply_target
+    return base.apply_target(target, args, kwargs, callback, accept_callback,
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/base.py", line 29, in apply_target
+    ret = target(*args, **kwargs)
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/concurrency/eventlet.py", line 166, in killable_target
+    return target(*args, **kwargs)
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 649, in fast_trace_task
+    R, I, T, Rstr = tasks[task].__trace__(
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 468, in trace_task
+    I, R, state, retval = on_error(task_request, exc, uuid)
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 379, in on_error
+    R = I.handle_error_state(
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 237, in handle_failure
+    self._log_error(task, req, einfo)
+[2023-04-01 21:25:28,968: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 265, in _log_error
+    logger.log(policy.severity, policy.format.strip(), context,
+[2023-04-01 21:25:28,968: WARNING/MainProcess] Message: 'Task %(name)s[%(id)s] %(description)s: %(exc)s'
+Arguments: {'hostname': 'celery@x', 'id': '735a3387-b240-42a1-8d03-f5db1783e301', 'name': 'bots.tasks.chat', 'exc': 'TypeError("chat() missing 1 required positional argument: \'name\'")', 'traceback': 'Traceback (most recent call last):\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 451, in trace_task\n    R = retval = fun(*args, **kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^\n  File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 734, in __protected_call__\n    return self.run(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: chat() missing 1 required positional argument: \'name\'\n', 'args': "['specific.e2876693184f4a0098c7ce68565385ca!5d2f97eb2a31459393ae9acdf6f540aa']", 'kwargs': '{}', 'description': 'raised unexpected', 'internal': False}
+[2023-04-01 21:25:45,185: INFO/MainProcess] Task bots.tasks.add[e7ba683a-f0f4-4894-b2a4-53ef8c210285] received
+[2023-04-01 21:25:45,195: WARNING/MainProcess] 1+2=3
+[2023-04-01 21:25:45,205: INFO/MainProcess] Task bots.tasks.add[e7ba683a-f0f4-4894-b2a4-53ef8c210285] succeeded in 0.019401871017180383s: None
+[2023-04-01 21:28:20,103: INFO/MainProcess] Task bots.tasks.chat[dfac0f96-b579-4319-a9ad-9953bf444b19] received
+[2023-04-01 21:28:20,115: WARNING/MainProcess] 你好
+[2023-04-01 21:28:20,127: INFO/MainProcess] Task bots.tasks.chat[dfac0f96-b579-4319-a9ad-9953bf444b19] succeeded in 0.02281457104254514s: None
+[2023-04-01 21:28:23,956: INFO/MainProcess] Task bots.tasks.chat[911246a3-2724-4d48-aab8-4e721052586b] received
+[2023-04-01 21:28:23,965: WARNING/MainProcess] 你好
+[2023-04-01 21:28:23,983: INFO/MainProcess] Task bots.tasks.chat[911246a3-2724-4d48-aab8-4e721052586b] succeeded in 0.026254797936417162s: None
+[2023-04-01 21:29:02,190: INFO/MainProcess] Task bots.tasks.chat[ccffa6db-d617-4ba8-beeb-debef42e2558] received
+[2023-04-01 21:29:02,203: WARNING/MainProcess] 你好
+[2023-04-01 21:29:02,215: INFO/MainProcess] Task bots.tasks.chat[ccffa6db-d617-4ba8-beeb-debef42e2558] succeeded in 0.024136330001056194s: None
+[2023-04-01 21:30:40,124: INFO/MainProcess] Task bots.tasks.chat[004e1149-9880-4a65-b229-b774d0d53344] received
+[2023-04-01 21:30:40,135: WARNING/MainProcess] 你好
+[2023-04-01 21:30:40,146: INFO/MainProcess] Task bots.tasks.chat[004e1149-9880-4a65-b229-b774d0d53344] succeeded in 0.02116605604533106s: None
+[2023-04-01 21:32:50,084: INFO/MainProcess] Task bots.tasks.chat[ed083d46-fc1b-457a-8d73-dbde090e028e] received
+[2023-04-01 21:32:50,095: WARNING/MainProcess] 你好
+[2023-04-01 21:32:50,106: INFO/MainProcess] Task bots.tasks.chat[ed083d46-fc1b-457a-8d73-dbde090e028e] succeeded in 0.021024883957579732s: None
+[2023-04-01 21:33:28,179: INFO/MainProcess] Task bots.tasks.chat[4651a4dd-2828-4c9e-9ad6-4eee06f7594d] received
+[2023-04-01 21:33:28,191: WARNING/MainProcess] 你好
+[2023-04-01 21:33:28,205: INFO/MainProcess] Task bots.tasks.chat[4651a4dd-2828-4c9e-9ad6-4eee06f7594d] succeeded in 0.024814039934426546s: None
+[2023-04-01 21:33:46,635: INFO/MainProcess] Task bots.tasks.chat[9934da00-993e-4f84-ac2d-524ee051c52d] received
+[2023-04-01 21:33:46,643: WARNING/MainProcess] 你好
+[2023-04-01 21:33:46,653: INFO/MainProcess] Task bots.tasks.chat[9934da00-993e-4f84-ac2d-524ee051c52d] succeeded in 0.017780508962459862s: None
+[2023-04-01 21:42:49,637: INFO/MainProcess] Task bots.tasks.chat[917ff62b-2822-49bd-97cc-80392fb240b5] received
+[2023-04-01 21:42:49,655: WARNING/MainProcess] 你好
+[2023-04-01 21:42:49,666: INFO/MainProcess] Task bots.tasks.chat[917ff62b-2822-49bd-97cc-80392fb240b5] succeeded in 0.028276304015889764s: None
+[2023-04-01 21:43:14,020: INFO/MainProcess] Task bots.tasks.chat[5507a8dc-a8c7-45fc-ad3c-1e23590ff95b] received
+[2023-04-01 21:43:14,030: WARNING/MainProcess] 你好
+[2023-04-01 21:43:14,042: INFO/MainProcess] Task bots.tasks.chat[5507a8dc-a8c7-45fc-ad3c-1e23590ff95b] succeeded in 0.021363093983381987s: None
+[2023-04-01 21:43:28,495: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 332, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.11/dist-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 628, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/loops.py", line 130, in synloop
+    connection.drain_events(timeout=2.0)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 259, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 212, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2023-04-01 21:43:28,501: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py:367: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2023-04-01 21:43:28,502: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:43:28,502: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/hubs/poll.py", line 111, in wait
+    listener.cb(fileno)
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/worker/pidbox.py", line 118, in loop
+    connection.drain_events(timeout=1.0)
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,503: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:43:28,504: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+
+worker: Warm shutdown (MainProcess)
+celery worker has been started.
+/usr/local/lib/python3.11/dist-packages/celery/platforms.py:840: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@x v5.2.7 (dawn-chorus)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.35 2023-04-01 21:43:33
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         chatgpt:0x7f65899d68d0
+- ** ---------- .> transport:   redis://127.0.0.1:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 4 (eventlet)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . bots.tasks.add
+  . bots.tasks.chat
+  . bots.tasks.search
+  . chatgpt.celery.debug_task
+
+[2023-04-01 21:43:33,105: INFO/MainProcess] Connected to redis://127.0.0.1:6379/0
+[2023-04-01 21:43:33,107: INFO/MainProcess] mingle: searching for neighbors
+[2023-04-01 21:43:34,117: INFO/MainProcess] mingle: all alone
+[2023-04-01 21:43:34,124: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2023-04-01 21:43:34,124: INFO/MainProcess] celery@x ready.
+[2023-04-01 21:43:34,127: INFO/MainProcess] pidbox: Connected to redis://127.0.0.1:6379/0.
+[2023-04-01 21:43:45,233: INFO/MainProcess] Task bots.tasks.chat[d21506fa-4e3f-449d-8d46-40c73eb52c78] received
+[2023-04-01 21:43:45,234: WARNING/MainProcess] xrf
+[2023-04-01 21:43:45,234: WARNING/MainProcess] 123
+[2023-04-01 21:43:45,243: WARNING/MainProcess] 123
+[2023-04-01 21:43:45,252: INFO/MainProcess] Task bots.tasks.chat[d21506fa-4e3f-449d-8d46-40c73eb52c78] succeeded in 0.018259742064401507s: None
+[2023-04-01 21:43:56,654: INFO/MainProcess] Task bots.tasks.chat[25f80288-738f-4601-86cc-84e24f97ab80] received
+[2023-04-01 21:43:56,655: WARNING/MainProcess] xrf
+[2023-04-01 21:43:56,655: WARNING/MainProcess] 士大夫a'sas
+[2023-04-01 21:43:56,663: WARNING/MainProcess] 士大夫a'sas
+[2023-04-01 21:43:56,673: INFO/MainProcess] Task bots.tasks.chat[25f80288-738f-4601-86cc-84e24f97ab80] succeeded in 0.01814117410685867s: None
+[2023-04-01 21:44:28,631: INFO/MainProcess] Task bots.tasks.chat[9ce76e63-ddbf-468a-9b06-3050a47476af] received
+[2023-04-01 21:44:28,632: WARNING/MainProcess] xrf
+[2023-04-01 21:44:28,632: WARNING/MainProcess] 1231
+[2023-04-01 21:44:28,641: WARNING/MainProcess] 1231
+[2023-04-01 21:44:28,652: INFO/MainProcess] Task bots.tasks.chat[9ce76e63-ddbf-468a-9b06-3050a47476af] succeeded in 0.0203278650296852s: None
+[2023-04-01 21:44:32,486: INFO/MainProcess] Task bots.tasks.chat[c7695e61-cf45-4cf7-88ec-368f013fab78] received
+[2023-04-01 21:44:32,487: WARNING/MainProcess] xrf
+[2023-04-01 21:44:32,487: WARNING/MainProcess] 士大夫
+[2023-04-01 21:44:32,494: WARNING/MainProcess] 士大夫
+[2023-04-01 21:44:32,504: INFO/MainProcess] Task bots.tasks.chat[c7695e61-cf45-4cf7-88ec-368f013fab78] succeeded in 0.017264120979234576s: None
+[2023-04-01 21:44:53,567: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 332, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.11/dist-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 628, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/loops.py", line 130, in synloop
+    connection.drain_events(timeout=2.0)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+  File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 259, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 212, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+[2023-04-01 21:44:53,576: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py:367: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered back to the queue.
+You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss setting.
+In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+[2023-04-01 21:44:53,578: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:44:53,579: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/hubs/poll.py", line 111, in wait
+    listener.cb(fileno)
+[2023-04-01 21:44:53,579: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/worker/pidbox.py", line 118, in loop
+    connection.drain_events(timeout=1.0)
+[2023-04-01 21:44:53,579: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,580: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+[2023-04-01 21:44:53,580: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,580: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,580: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+[2023-04-01 21:44:53,580: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,581: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+[2023-04-01 21:44:53,582: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+[2023-04-01 21:44:53,582: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,582: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:44:53,582: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+worker: Warm shutdown (MainProcess)
+celery worker has been started.
+/usr/local/lib/python3.11/dist-packages/celery/platforms.py:840: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@x v5.2.7 (dawn-chorus)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-67-generic-x86_64-with-glibc2.35 2023-04-01 21:44:57
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         chatgpt:0x7f75cc9ce8d0
+- ** ---------- .> transport:   redis://127.0.0.1:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 4 (eventlet)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . bots.tasks.add
+  . bots.tasks.chat
+  . bots.tasks.search
+  . chatgpt.celery.debug_task
+
+[2023-04-01 21:44:57,851: INFO/MainProcess] Connected to redis://127.0.0.1:6379/0
+[2023-04-01 21:44:57,853: INFO/MainProcess] mingle: searching for neighbors
+[2023-04-01 21:44:58,864: INFO/MainProcess] mingle: all alone
+[2023-04-01 21:44:58,873: WARNING/MainProcess] /usr/local/lib/python3.11/dist-packages/celery/fixups/django.py:203: UserWarning: Using settings.DEBUG leads to a memory
+            leak, never use this setting in production environments!
+  warnings.warn('''Using settings.DEBUG leads to a memory
+
+[2023-04-01 21:44:58,873: INFO/MainProcess] celery@x ready.
+[2023-04-01 21:44:58,876: INFO/MainProcess] pidbox: Connected to redis://127.0.0.1:6379/0.
+[2023-04-01 21:45:08,695: INFO/MainProcess] Task bots.tasks.chat[c4b17df0-e796-4ccc-bef8-5faadc106372] received
+[2023-04-01 21:45:08,705: WARNING/MainProcess] 你好，你输入了：123
+[2023-04-01 21:45:08,715: INFO/MainProcess] Task bots.tasks.chat[c4b17df0-e796-4ccc-bef8-5faadc106372] succeeded in 0.019381798920221627s: None
+[2023-04-01 21:49:59,595: WARNING/MainProcess] Traceback (most recent call last):
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/eventlet/hubs/poll.py", line 111, in wait
+    listener.cb(fileno)
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/celery/worker/pidbox.py", line 118, in loop
+    connection.drain_events(timeout=1.0)
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 906, in _receive
+    ret.append(self._receive_one(c))
+               ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,597: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 916, in _receive_one
+    response = c.parse_response()
+               ^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1531, in parse_response
+    response = self._execute(conn, try_read)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1507, in _execute
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 49, in call_with_retry
+    fail(error)
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1509, in <lambda>
+    lambda error: self._disconnect_raise_connect(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1496, in _disconnect_raise_connect
+    raise error
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1508, in <lambda>
+    lambda: command(*args, **kwargs),
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1529, in try_read
+    return conn.read_response()
+           ^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,598: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+[2023-04-01 21:49:59,599: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 259, in readline
+    self._read_from_socket()
+[2023-04-01 21:49:59,599: WARNING/MainProcess]   File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 212, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+[2023-04-01 21:49:59,599: WARNING/MainProcess] redis.exceptions.ConnectionError: Connection closed by server.
+[2023-04-01 21:49:59,599: WARNING/MainProcess] Removing descriptor: 16
+[2023-04-01 21:49:59,600: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 332, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python3.11/dist-packages/celery/bootsteps.py", line 116, in start
+    step.start(parent)
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/consumer/consumer.py", line 628, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python3.11/dist-packages/celery/worker/loops.py", line 130, in synloop
+    connection.drain_events(timeout=2.0)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/connection.py", line 316, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/virtual/base.py", line 971, in drain_events
+    get(self._deliver, timeout=timeout)
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 584, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 566, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 562, in on_readable
+    chan.handlers[type]()
+  File "/usr/local/lib/python3.11/dist-packages/kombu/transport/redis.py", line 955, in _brpop_read
+    dest__item = self.client.parse_response(self.client.connection,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/client.py", line 1275, in parse_response
+    response = connection.read_response()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 865, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 346, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 356, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 259, in readline
+    self._read_from_socket()
+  File "/usr/local/lib/python3.11/dist-packages/redis/connection.py", line 212, in _read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+
+worker: Warm shutdown (MainProcess)

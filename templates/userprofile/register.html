@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% load static %}
+{% block title %} 注册 {% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <br>
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    <!-- 账号 -->
+                    <div class="form-group">
+                        <label for="username">昵称</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                               value="{{ user_register_form.username.value }}" required>
+                    </div>
+                    <!-- 邮箱 -->
+                <!--
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email"
+                                value="{{ user_register_form.email.value }}" >
+                    </div>
+                    -->
+                    <!-- 密码 -->
+                    <div class="form-group">
+                        <label for="password">设置密码</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <!-- 确认密码 -->
+                    <div class="form-group">
+                        <label for="password2">确认密码</label>
+                        <input type="password" class="form-control" id="password2" name="password2" required>
+                    </div>
+                    <div class="error btns" id="jsMobileTips">
+                        {{ msg }}
+
+                        {% for key,err in user_register_form.errors.items %}
+                            {{ err }}
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="btn btn-primary btn-block">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,110 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load static %}
+<!-- 写入 base.html 中定义的 title -->
+{% block title %} 聊天 {% endblock title %}
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" ?v=2023032301">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/marked.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.staticfile.org/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/a11y-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+
+    <div class="chat_window">
+        <ul class="messages">
+            <div style="text-align: left; color: black" id="chat" class="content">
+                <pre style="white-space: pre-wrap; word-wrap:break-word" id="chat-log"></pre>
+            </div>
+        </ul>
+        <div class="bottom_wrapper clearfix">
+            <textarea class="message_input_wrapper markdown" placeholder=" 输入`help`获取帮助信息."
+                      id="chat-message-input"></textarea>
+            <button class="send_message" id="chat-message-submit" value="Send"> 提交</button>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+
+
+    <script>
+
+        hljs.initHighlightingOnLoad();
+        marked.marked.setOptions({
+            renderer: new marked.Renderer(),
+            highlight: function (code) {
+                return hljs.highlightAuto(code).value;
+            },
+            pedantic: false,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false,
+            xhtml: false
+        });
+
+        var wss_protocol = (window.location.protocol == 'https:') ? 'wss://' : 'ws://';
+        var chatSocket = new WebSocket(
+            wss_protocol + window.location.host + '/ws/bots/'
+        );
+
+        chatSocket.onopen = function (e) {
+
+            var chatlog = document.getElementById("chat-log");
+            var response = document.createElement("div");
+            response.innerHTML =  marked.marked(' 欢迎来到蚂蚁查重聊天机器人. 请输入`help`获取帮助信息.') ;
+            response.className = "markdown";
+            chatlog.appendChild(response);
+            $(".messages").scrollTop($(".messages")[0].scrollHeight);
+        }
+
+        chatSocket.onmessage = function (e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            var chatlog = document.getElementById("chat-log");
+            var response = document.createElement("div");
+            response.innerHTML = marked.marked(message);
+            response.className = "markdown";
+            chatlog.appendChild(response);
+            $(".messages").scrollTop($(".messages")[0].scrollHeight);
+
+
+        };
+
+        chatSocket.onclose = function (e) {
+            var chatlog = document.getElementById("chat-log");
+            var response = document.createElement("div");
+            response.innerHTML = "<br>" + marked.marked('聊天连接中断，请刷新页面\n') + "<br>";
+
+            chatlog.appendChild(response);
+            $(".messages").scrollTop($(".messages")[0].scrollHeight);
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function (e) {
+            var messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'name': "{{ user.username }}",
+                'id':{{ user.id }}
+            }));
+            messageInputDom.value = '';
+        };
+
+
+    </script>
+    <!-- <script src="{% static 'script.js' %}"></script> -->
+
+{% endblock content %}

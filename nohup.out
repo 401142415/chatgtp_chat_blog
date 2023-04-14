@@ -1,0 +1,9 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:03:59
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Listen failure: Couldn't listen on 0.0.0.0:8000: [Errno 98] Address already in use.

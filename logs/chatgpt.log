@@ -1,0 +1,817 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:13:08
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:18:28
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.04, 192.168.1.189:1509]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1516]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1516]
+/home/dev/chatgpt/bots/consumers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:21:07
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:1775]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1778]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1778]
+Exception inside application: 'chat'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+                   ~~~~~~~~^^^^^^^^
+KeyError: 'chat'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:1778]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:1794]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1799]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1799]
+Exception inside application: 'chat'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+                   ~~~~~~~~^^^^^^^^
+KeyError: 'chat'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:1799]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:1808]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1811]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1811]
+/home/dev/chatgpt/chatgpt/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:22:02
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:1890]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1893]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1893]
+Exception inside application: chat() missing 1 required positional argument: 'name'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'name'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:1893]
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:1913]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1918]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1918]
+Exception inside application: chat() missing 1 required positional argument: 'name'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'name'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:1918]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:1927]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:1931]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:1931]
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:23:24
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2016]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2020]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2020]
+/home/dev/chatgpt/bots/consumers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:25:19
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2194]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2197]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2197]
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:26:51
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2344]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2350]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2350]
+Exception inside application: chat() missing 1 required positional argument: 'message'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'message'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2350]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:2356]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2359]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2359]
+Exception inside application: chat() missing 1 required positional argument: 'message'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'message'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2359]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:2366]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2369]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2369]
+Exception inside application: chat() missing 1 required positional argument: 'message'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'message'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2369]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:2381]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2384]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2384]
+Exception inside application: chat() missing 1 required positional argument: 'message'
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, *message_parts[1:])
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/celery/app/task.py", line 540, in apply_async
+    check_arguments(*(args or ()), **(kwargs or {}))
+TypeError: chat() missing 1 required positional argument: 'message'
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2384]
+/home/dev/chatgpt/bots/consumers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:28:16
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.03, 192.168.1.189:2496]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2499]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2499]
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:28:58
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.03, 192.168.1.189:2568]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2571]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2571]
+/home/dev/chatgpt/chatgpt/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:30:34
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2725]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2730]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2730]
+/home/dev/chatgpt/article/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:31:23
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.04, 192.168.1.189:2816]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2819]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2819]
+Exception inside application: can only concatenate list (not "str") to list
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    print(message_parts+"|"+message_parts[0:])
+          ~~~~~~~~~~~~~^~~~
+TypeError: can only concatenate list (not "str") to list
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2819]
+HTTP GET /bots/ 200 [0.01, 192.168.1.189:2829]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2832]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2832]
+Exception inside application: can only concatenate list (not "str") to list
+Traceback (most recent call last):
+  File "/root/.local/lib/python3.11/site-packages/channels/staticfiles.py", line 44, in __call__
+    return await self.application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 71, in __call__
+    return await application(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 47, in __call__
+    return await self.inner(dict(scope, cookies=cookies), receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/sessions.py", line 263, in __call__
+    return await self.inner(wrapper.scope, receive, wrapper.send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/auth.py", line 185, in __call__
+    return await super().__call__(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/middleware.py", line 26, in __call__
+    return await self.inner(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/routing.py", line 150, in __call__
+    return await application(
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 94, in app
+    return await consumer(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 58, in __call__
+    await await_many_dispatch(
+  File "/root/.local/lib/python3.11/site-packages/channels/utils.py", line 51, in await_many_dispatch
+    await dispatch(result)
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 448, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 442, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/db.py", line 13, in thread_handler
+    return super().thread_handler(loop, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/asgiref/sync.py", line 490, in thread_handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.11/site-packages/channels/consumer.py", line 125, in dispatch
+    handler(message)
+  File "/root/.local/lib/python3.11/site-packages/channels/generic/websocket.py", line 59, in websocket_receive
+    self.receive(text_data=message["text"])
+  File "/home/dev/chatgpt/bots/consumers.py", line 51, in receive
+    print(message_parts+"|"+message_parts[0:])
+          ~~~~~~~~~~~~~^~~~
+TypeError: can only concatenate list (not "str") to list
+WebSocket DISCONNECT /ws/bots/ [192.168.1.189:2832]
+/home/dev/chatgpt/bots/consumers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:32:44
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2943]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:2948]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:2948]
+['21']
+['21']
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:33:24
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:2997]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:3005]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:3005]
+['231']
+['231']
+['士大夫']
+['士大夫']
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:42:46
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:3872]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:3879]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:3879]
+['123']
+['123']
+/home/dev/chatgpt/userprofile/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:43:03
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:3915]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:3918]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:3918]
+['123']
+['123']
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:43:33
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:3958]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:3963]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:3963]
+['123']
+['123']
+["士大夫a'sas"]
+["士大夫a'sas"]
+/home/dev/chatgpt/bots/tasks.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:44:21
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:4040]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:4043]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:4043]
+['1231']
+['1231']
+['士大夫']
+['士大夫']
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 01, 2023 - 21:44:57
+Django version 4.1.7, using settings 'chatgpt.settings'
+Starting ASGI/Channels version 3.0.5 development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+HTTP GET /bots/ 200 [0.02, 192.168.1.189:4111]
+WebSocket HANDSHAKING /ws/bots/ [192.168.1.189:4116]
+WebSocket CONNECT /ws/bots/ [192.168.1.189:4116]
+['123']
+['123']
