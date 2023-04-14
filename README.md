@@ -1,4 +1,5 @@
 # 介绍
+![Quicker_20230414_151831.png](..%2F..%2FUsers%2FAdministrator%2FDesktop%2FQuicker_20230414_151831.png)
 
 基于django框架
 + 1、django原生的登录、注册
