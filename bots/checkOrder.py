@@ -7,9 +7,9 @@ from loguru import logger
 from channels.db import database_sync_to_async
 from bots.models import TalkTimes
 
-url9001 = "http://crosscheck.monster:9001/GetReportList"
-url10001 = "http://crosscheck.monster:10001/GetReportList"
-url11001 = "http://crosscheck.monster:11001/GetReportList"
+url9001 = "http://192.168.0.2:8001/GetReportList"
+url10001 = "http://192.168.0.2:9001/GetReportList"
+url11001 = "http://192.168.0.2:10001/GetReportList"
 def checkUsedOrder(orderId):
     try:
         data = {'tid1': str(orderId), 'select': '4'}
