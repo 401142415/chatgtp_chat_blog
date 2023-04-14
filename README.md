@@ -1,5 +1,6 @@
 # 介绍
-![Quicker_20230414_151831.png](..%2F..%2FUsers%2FAdministrator%2FDesktop%2FQuicker_20230414_151831.png)
+![Quicker_20230414_151831](https://user-images.githubusercontent.com/27610751/231972390-8186ca65-6f4b-437d-988a-128894432d40.png)
+
 
 基于django框架
 + 1、django原生的登录、注册
