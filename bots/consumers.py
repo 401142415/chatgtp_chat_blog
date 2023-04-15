@@ -26,16 +26,16 @@ COMMANDS = {
         'task': 'chat'
     }
 
-
 }
+
 
 class BotConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         id = text_data_json['id']
-        name =  text_data_json['name']
-        print(str(id)+ "|"+str(name)+ " say:" + message)
+        name = text_data_json['name']
+        print(str(id) + "|" + str(name) + " say:" + message)
         response_message = '请输入`help`获取命令帮助信息。'
         message_parts = message.split()
         if message_parts:
@@ -50,10 +50,14 @@ class BotConsumer(WebsocketConsumer):
                 self.send_message(response_message)
 
             elif command == 'addtimes':
-                response_message = f'!! {message}'
-                self.send_message(response_message)
-                getattr(tasks, COMMANDS["addtimes"]['task']).delay(self.channel_name, message_parts[1] , id)
-                '''
+                if len(message_parts[1:]) != COMMANDS[command]['args']:
+                    response_message = f'命令`{command}`参数错误，请重新输入.'
+                    self.send_message(response_message)
+                else:
+                    response_message = f'!! {message}'
+                    self.send_message(response_message)
+                    getattr(tasks, COMMANDS["addtimes"]['task']).delay(self.channel_name, message_parts[1], id)
+                    '''
             elif command in COMMANDS:
                 if len(message_parts[1:]) != COMMANDS[command]['args']:
                     response_message = f'命令`{command}`参数错误，请重新输入.'
@@ -65,7 +69,7 @@ class BotConsumer(WebsocketConsumer):
                     response_message = f'!!{message}'
                 '''
             else:
-                if int(checkOrder.checkTimes(id))>0:
+                if int(checkOrder.checkTimes(id)) > 0:
                     response_message = f'!!{message}'
                     self.send_message(response_message)
                     getattr(tasks, COMMANDS["chat"]['task']).delay(self.channel_name, message, id)
@@ -77,8 +81,7 @@ class BotConsumer(WebsocketConsumer):
                     response_message = '剩余聊天次数不足，请使用"addtimes 订单号"命令增加次数'
                     self.send_message(response_message)
 
-
-    def send_message(self,response_message):
+    def send_message(self, response_message):
         async_to_sync(self.channel_layer.send)(
             self.channel_name,
             {
@@ -86,6 +89,7 @@ class BotConsumer(WebsocketConsumer):
                 'message': response_message
             }
         )
+
     def chat_message(self, event):
         message = event['message']
         if not str(message).startswith("!!"):

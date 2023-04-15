@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" ?v=2023032301">
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/marked.min.js' %}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML"></script>
     <script src="https://cdn.staticfile.org/clipboard.js/2.0.4/clipboard.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/a11y-dark.min.css">
@@ -57,7 +58,7 @@
 
             var chatlog = document.getElementById("chat-log");
             var response = document.createElement("div");
-            response.innerHTML =  marked.marked(' 欢迎来到蚂蚁查重聊天机器人. 请输入`help`获取帮助信息.') ;
+            response.innerHTML = marked.parse(' 欢迎来到ChatGPT聊天机器人. 请输入`help`获取帮助信息.');
             response.className = "markdown";
             chatlog.appendChild(response);
             $(".messages").scrollTop($(".messages")[0].scrollHeight);
@@ -68,7 +69,7 @@
             var message = data['message'];
             var chatlog = document.getElementById("chat-log");
             var response = document.createElement("div");
-            response.innerHTML = marked.marked(message);
+            response.innerHTML = marked.parse(message);
             response.className = "markdown";
             chatlog.appendChild(response);
             $(".messages").scrollTop($(".messages")[0].scrollHeight);
@@ -79,7 +80,7 @@
         chatSocket.onclose = function (e) {
             var chatlog = document.getElementById("chat-log");
             var response = document.createElement("div");
-            response.innerHTML = "<br>" + marked.marked('聊天连接中断，请刷新页面\n') + "<br>";
+            response.innerHTML = "<br>" + marked.parse('聊天连接中断，请刷新页面\n') + "<br>";
 
             chatlog.appendChild(response);
             $(".messages").scrollTop($(".messages")[0].scrollHeight);
